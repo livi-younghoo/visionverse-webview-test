@@ -1,24 +1,15 @@
 import { useEffect, useRef } from "react";
 import "./App.css";
-import {
-  Route,
-  BrowserRouter as Router,
-  Routes,
-  useSearchParams,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 const Main = () => {
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const [searchParams] = useSearchParams();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      buttonRef.current.focus();
-    }, 3000);
-    // if (buttonRef.current && searchParams.get("isWebviewAccess")) {
-    //   buttonRef.current.focus();
-    // }
-  }, [searchParams]);
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   return (
     <>
@@ -29,11 +20,11 @@ const Main = () => {
         },
         (_, idx) => {
           return (
-            <button key={idx}>{idx} 포커스가 가도 읽히면 안되는 요소</button>
+            <input placeholder="포커스가 가도 읽히면 안되는 요소" key={idx} />
           );
         }
       )}
-      <button ref={buttonRef}>의도적으로 포커스 발생시킨 요소</button>
+      <input ref={inputRef} />
     </>
   );
 };
