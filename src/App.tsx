@@ -6,9 +6,7 @@ const Main = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    inputRef.current.focus();
   }, []);
 
   return (
