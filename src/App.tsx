@@ -20,7 +20,13 @@ const Main = () => {
         },
         (_, idx) => {
           return (
-            <input placeholder="포커스가 가도 읽히면 안되는 요소" key={idx} />
+            <input
+              style={{
+                width: "600px",
+              }}
+              placeholder="포커스가 가도 읽히면 안되는 요소            werewr               "
+              key={idx}
+            />
           );
         }
       )}
