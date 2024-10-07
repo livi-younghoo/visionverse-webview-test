@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 const Main = () => {
-  return <Link to="/form">버튼을 눌러 설문 조사를 시작해주세요.</Link>;
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (buttonRef.current) {
+      buttonRef.current.focus();
+    }
+  }, []);
+
+  return <button ref={buttonRef}>버튼을 눌러 설문 조사를 시작해주세요.</button>;
 };
 
 const Form = () => {
