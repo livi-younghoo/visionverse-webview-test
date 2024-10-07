@@ -12,13 +12,17 @@ const Main = () => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    if (buttonRef.current && searchParams.get("isWebviewAccess")) {
+    setTimeout(() => {
       buttonRef.current.focus();
-    }
+    }, 3000);
+    // if (buttonRef.current && searchParams.get("isWebviewAccess")) {
+    //   buttonRef.current.focus();
+    // }
   }, [searchParams]);
 
   return (
     <>
+      <button>1234</button>
       {Array.from(
         {
           length: 20,
