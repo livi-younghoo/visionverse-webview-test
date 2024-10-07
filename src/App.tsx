@@ -1,34 +1,19 @@
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import "./App.css";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 const Main = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  return <Link to="/form">버튼을 눌러 설문 조사를 시작해주세요.</Link>;
+};
 
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+const Form = () => {
+  const [index, setIndex] = useState(0);
 
   return (
     <>
-      <button>1234</button>
-      {Array.from(
-        {
-          length: 20,
-        },
-        (_, idx) => {
-          return (
-            <input
-              style={{
-                width: "600px",
-              }}
-              placeholder="포커스가 가도 읽히면 안되는 요소            werewr               "
-              key={idx}
-            />
-          );
-        }
-      )}
-      <input ref={inputRef} />
+      {index === 0 && <FirstPage />}
+      {index === 1 && <SecondPage />}
+      <button onClick={() => setIndex(index + 1)}>다음으로</button>
     </>
   );
 };
@@ -38,9 +23,31 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/form" element={<Form />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
+const FirstPage = () => {
+  return (
+    <>
+      <label htmlFor="name">이름</label>
+      <input id="name" placeholder="이름을 입력해주세요" />
+    </>
+  );
+};
+
+const SecondPage = () => {
+  return (
+    <>
+      <label htmlFor="gender">성별</label>
+      <input id="gender" type="radio">
+        남자
+      </input>
+      <input type="radio">여자</input>
+    </>
+  );
+};
